@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.praktikum.burgers.pom.MainPage;
 
+import static org.junit.Assert.*;
+
 public class ConstructorTest {
 
     private WebDriver driver;
@@ -30,7 +32,7 @@ public class ConstructorTest {
         MainPage mainPage = new MainPage(driver);
         mainPage.openPage();
         mainPage.clickSauceTab();
-        mainPage.isSpicySauceTabDisplayed();
+        assertEquals("Соусы", mainPage.getTextFromSelectedMenu());
     }
 
     @Test
@@ -39,7 +41,7 @@ public class ConstructorTest {
         MainPage mainPage = new MainPage(driver);
         mainPage.openPage();
         mainPage.clickFillingsTab();
-        mainPage.isProtostomiaFillingsTabDisplayed();
+        assertEquals("Начинки", mainPage.getTextFromSelectedMenu());
     }
 
     @Test
@@ -49,6 +51,6 @@ public class ConstructorTest {
         mainPage.openPage();
         mainPage.clickFillingsTab();
         mainPage.clickBunsTab();
-        mainPage.isFluorescentBunTabDisplayed();
+        assertEquals("Булки", mainPage.getTextFromSelectedMenu());
     }
 }

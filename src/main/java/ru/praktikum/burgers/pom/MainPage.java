@@ -18,16 +18,12 @@ public class MainPage {
     private By personalAccountButton = By.xpath("//p[text()='Личный Кабинет']");
     //Кнопка перехода в раздел "Булки"
     private By bunsTab = By.xpath(".//div[./span[text()='Булки']]");
-    //Картинка "Флюоресцентная булка R2-D3" для проверки видимости раздела
-    private By fluorescentBunTab = By.xpath(".//img[@alt='Флюоресцентная булка R2-D3']");
     //Кнопка перехода в раздел "Соусы"
     private By sauceTab = By.xpath(".//div[./span[text()='Соусы']]");
-    //Наличие соуса Spicy-X для проверки видимости раздела Соусы
-    private By spicySauceTab = By.xpath(".//p[text()='Соус Spicy-X']");
     //Кнопка перехода в раздел "Начинки"
     private By fillingsTab = By.xpath(".//div[./span[text()='Начинки']]");
-    //Картинка "Мясо бессмертных моллюсков Protostomia" для проверки видимости раздела
-    private By protostomiaFillingsTab = By.xpath(".//img[@alt='Мясо бессмертных моллюсков Protostomia']");
+    //Локатор текущего меню
+    private By currentMenu = By.xpath("//div[contains(@class,'tab_tab__1SPyG tab_tab_type_current__2BEPc')]");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -59,20 +55,9 @@ public class MainPage {
         driver.findElement(sauceTab).click();
     }
 
-
-    @Step("Проверка отображения соуса Spicy-X")
-    public boolean isSpicySauceTabDisplayed() {
-        return driver.findElement(spicySauceTab).isDisplayed();
-    }
-
     @Step("Клик по кнопке Начинки")
     public void clickFillingsTab() {
         driver.findElement(fillingsTab).click();
-    }
-
-    @Step("Проверка отображения картинки для начинки Мясо бессмертных моллюсков")
-    public boolean isProtostomiaFillingsTabDisplayed() {
-        return driver.findElement(protostomiaFillingsTab).isDisplayed();
     }
 
     @Step("Клик по кнопке Булки")
@@ -80,8 +65,8 @@ public class MainPage {
         driver.findElement(bunsTab).click();
     }
 
-    @Step("Проверка отображения флюорисцентной булки")
-    public boolean isFluorescentBunTabDisplayed() {
-        return driver.findElement(fluorescentBunTab).isDisplayed();
+    @Step("Проверка текста текущего меню")
+    public String getTextFromSelectedMenu() {
+        return driver.findElement(currentMenu).getText();
     }
 }
